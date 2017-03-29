@@ -11,6 +11,7 @@ public class User {
     this.userName = userName;
     this.userBio = userBio;
   }
+  
   public String getUserName() {
     return userName;
   }
