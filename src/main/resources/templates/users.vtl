@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Here are all of the Users</h1>
+  </div>
+  <div class="jumbotron">
+    #if ($users)
+    <ul>
+      #foreach ($user in $users)
+      <li><a href="/users">@user.getUserName()</a></li>
+      #end
+    </ul>
+    #end
+  </div>
+</div>
