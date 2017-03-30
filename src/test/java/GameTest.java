@@ -46,7 +46,11 @@ public class GameTest {
     Game test = new Game("TestGameName","Action","String3","String4");
     assertEquals("String4", test.getPlatform());
   }
-  // --> Need test for writing reviews <-- //
-
+  @Test
+  public void find_returnsGamesinDatabase_true() {
+    Game test2 = new Game("TestGameName", "Action", "String3", "String4");
+    test2.save();
+    assertEquals(test2, Game.find(test2.getId()));
+  }
 
 }

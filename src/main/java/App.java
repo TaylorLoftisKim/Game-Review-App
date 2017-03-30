@@ -32,11 +32,24 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // get("/add-game-review", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("template", "templates/add-game-review.vtl");
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
+    get("/games", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("games", Game.all());
+      model.put("template", "templates/games.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/games/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Game game = Game.find(Integer.parseInt(request.params(":id")));
+      Review review = Review.find(Integer.parseInt(request.params(":id")));
+      model.put("game", game);
+      model.put("review", review);
+      model.put("template", "templates/game.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    
 
   }
 }
