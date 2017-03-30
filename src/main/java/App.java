@@ -15,23 +15,28 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/add-user", (request response) -> {
+    get("/add-user", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      model.put("users", User.all());
-      model.put("template", "templates/users.vtl");
+      model.put("template", "templates/add-user.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/add-user", (request response) -> {
+    post("/add-user", (request, response) -> {
       Map<String, Object> model = new HashMap<String,Object>();
       // User user = User.find(request.queryParams("userName"));
       String userName = request.queryParams("userName");
       String userBio = request.queryParams("userBio");
       User newUser = new User(userName, userBio);
-      User.save(newUser);
-      model.put("template", "templates/user-form.vtl");
+      newUser.save();
+      model.put("template", "templates/added-user.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    // get("/add-game-review", (request, response) -> {
+    //   Map<String, Object> model = new HashMap<String, Object>();
+    //   model.put("template", "templates/add-game-review.vtl");
+    //   return new ModelAndView(model, layout);
+    // }, new VelocityTemplateEngine());
 
   }
 }

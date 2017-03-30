@@ -46,6 +46,7 @@ public class GameTest {
     Game test = new Game("TestGameName","Action","String3","String4");
     assertEquals("String4", test.getPlatform());
   }
+  // --> Need test for writing reviews <-- //
 
 
 }
