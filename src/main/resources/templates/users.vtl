@@ -3,12 +3,11 @@
     <h1>Here are all of the Users</h1>
   </div>
   <div class="jumbotron">
-    #if ($users)
-    <ul>
-      #foreach ($user in $users)
-      <li><a href="/users">@user.getUserName()</a></li>
-      #end
-    </ul>
+    #foreach ($user in $users)
+    <h3><a href="/users/$user.getId()">$user.getUserName()</a></h3>
     #end
+  </div>
+  <div class="jumbotron">
+    <h3><a href="/">Go Home</a></h3>
   </div>
 </div>

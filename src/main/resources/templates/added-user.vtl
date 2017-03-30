@@ -1,6 +1,12 @@
 <div class="container">
   <div class="jumbotron">
-    <h1>You have Created a New User!</h1>
+    <h1>User has been added!</h1>
+  </div>
+  <div class="jumbotron">
+    <h2>All Users:</h2>
+    #foreach ($user in $users)
+    <h3><a href="/users/$user.getId()">$user.getUserName()</a></h3>
+    #end
   </div>
   <div class="jumbotron">
     <a href="/add-user"><h3>Add another user</h3></a>

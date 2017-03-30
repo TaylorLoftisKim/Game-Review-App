@@ -23,11 +23,11 @@ public class App {
 
     post("/add-user", (request, response) -> {
       Map<String, Object> model = new HashMap<String,Object>();
-      // User user = User.find(request.queryParams("userName"));
       String userName = request.queryParams("userName");
       String userBio = request.queryParams("userBio");
       User newUser = new User(userName, userBio);
       newUser.save();
+      model.put("users", User.all());
       model.put("template", "templates/added-user.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -49,7 +49,19 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    
+    get("/users", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("users", User.all());
+      model.put("template", "templates/users.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/user/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(Integer.parseInt(request.params(":id")));
+      model.put("users", "templates/user.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
   }
 }

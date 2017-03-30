@@ -43,5 +43,4 @@ public class UserTest {
     assertEquals("Hash Slinging Slasher", test.getUserBio());
   }
 
-
 }
